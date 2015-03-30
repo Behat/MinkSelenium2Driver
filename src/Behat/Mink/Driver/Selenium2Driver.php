@@ -434,7 +434,7 @@ class Selenium2Driver extends CoreDriver
     /**
      * {@inheritdoc}
      */
-    public function setCookie($name, $value = null)
+    public function setCookie($name, $value = null, $domain = null)
     {
         if (null === $value) {
             $this->wdSession->deleteCookie($name);
@@ -447,6 +447,8 @@ class Selenium2Driver extends CoreDriver
             'value'  => (string) $value,
             'secure' => false, // thanks, chibimagic!
         );
+        
+        is_null($domain) or $cookieArray['domain'] = $domain;
 
         $this->wdSession->setCookie($cookieArray);
     }
