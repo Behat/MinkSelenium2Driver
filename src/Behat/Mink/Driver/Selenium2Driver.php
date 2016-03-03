@@ -804,6 +804,14 @@ JS;
     /**
      * {@inheritdoc}
      */
+    public function isEnabled($xpath)
+    {
+        return $this->findElement($xpath)->enabled();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function mouseOver($xpath)
     {
         $this->wdSession->moveto(array(
