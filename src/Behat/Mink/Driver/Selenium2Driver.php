@@ -1056,7 +1056,10 @@ XPATH;
     {
         $escapedValue = $this->xpathEscaper->escapeLiteral($value);
         // The value of an option is the normalized version of its text when it has no value attribute
-        $optionQuery = sprintf('.//option[@value = %s or (not(@value) and normalize-space(.) = %s)]', $escapedValue, $escapedValue);
+        $optionQuery = sprintf(
+            './/option[@value = %s or (not(@value) and normalize-space(.) = %1$s) or text()=%1$s]',
+            $escapedValue
+        );
         $option = $element->element('xpath', $optionQuery);
 
         if ($multiple || !$element->attribute('multiple')) {
